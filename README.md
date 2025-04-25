@@ -180,13 +180,30 @@ pytest tests/worker
 
 ---
 
-## 4 - Observações sobre armazenamento dos dados
+## 4 - Observações sobre armazenamento dos dados e filas
 
-Os resultados das tasks são armazenados temporariamente no Redis.
-
-- Cada resultado é salvo com um tempo de expiração (TTL) de **1 hora** após a criação da task.
-- Após esse período, o dado é removido automaticamente do Redis e não estará mais disponível na consulta (`GET /v1/results/{task_id}`).
+- **Dados no Redis**:
+  - Os resultados das tasks são armazenados temporariamente no Redis.
+  - Cada resultado tem um tempo de expiração (TTL) de **1 hora** após a criação da task.
+  - Após esse período, o dado é removido automaticamente do Redis e não estará mais disponível para consulta.
 
 > Essa política segue especificações passadas na descrição do teste one pede-se para armazenar temporariamente os dados no Redis.
+
+</br>
+
+- **RabbitMQ**:
+  - A fila de tarefas é gerenciada pelo RabbitMQ.
+  - O painel de gerenciamento do RabbitMQ (RabbitMQ Management UI) pode ser acessado em:
+
+    ```
+    http://localhost:15672
+    ```
+
+  - Credenciais padrão:
+
+    - **Usuário:** `guest`
+    - **Senha:** `guest`
+
+> Essas configurações são específicas para o ambiente local de testes.
 
 ---
