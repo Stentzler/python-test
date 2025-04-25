@@ -187,7 +187,7 @@ pytest tests/worker
   - Cada resultado tem um tempo de expiração (TTL) de **1 hora** após a criação da task.
   - Após esse período, o dado é removido automaticamente do Redis e não estará mais disponível para consulta.
 
-> Essa política segue especificações passadas na descrição do teste one pede-se para armazenar temporariamente os dados no Redis.
+> Essa política segue especificações passadas na descrição do teste onde pede-se para armazenar temporariamente os dados no Redis.
 
 </br>
 
