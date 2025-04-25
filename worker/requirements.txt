@@ -1,0 +1,8 @@
+celery==5.3.6
+redis==5.0.3
+selenium==4.31.0
+beautifulsoup4==4.13.4
+python-dotenv==1.0.1
+
+# testes do worker
+pytest==8.3.5
