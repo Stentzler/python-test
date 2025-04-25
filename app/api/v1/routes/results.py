@@ -2,11 +2,19 @@ import logging, json
 from fastapi import APIRouter, HTTPException
 
 from app.extensions import redis_client
+from app.api.v1.schemas.results import TaskResultResponse,ErrorResponse
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
-@router.get("/{task_id}")
+@router.get(
+    "/{task_id}",
+    response_model=TaskResultResponse,
+    responses={
+        404: {"model": ErrorResponse, "description": "Task ID não encontrado"},
+        422: {"description": "Removido — esta rota não retorna 422"}
+    }
+)
 def get_scrape_result(task_id: str):    
     result = redis_client.get(task_id)
     if result is None:

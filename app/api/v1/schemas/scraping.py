@@ -10,3 +10,8 @@ class ScrapeRequest(BaseModel):
         if not DocumentValidator.validate_cnpj(v):
             raise ValueError(f"CNPJ inválido: {v}. Verifique se possui 14 dígitos e se estão corretos.")
         return v
+
+
+class ScrapeResponse(BaseModel):
+    message: str
+    task_id: str

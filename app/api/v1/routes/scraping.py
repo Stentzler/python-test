@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from app.api.v1.schemas.scraping import ScrapeRequest
+from app.api.v1.schemas.scraping import ScrapeRequest, ScrapeResponse
 from app.services.task_manager import send_scrape_task
 from app.extensions import redis_client
 
@@ -9,7 +9,8 @@ import json
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
-@router.post("")
+
+@router.post("", response_model=ScrapeResponse)
 def enqueue_scrape(request: ScrapeRequest):
     try:
         task = send_scrape_task(request.cnpj)

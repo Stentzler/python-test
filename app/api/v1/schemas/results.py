@@ -1,5 +1,5 @@
 from enum import Enum
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional, Union, Dict
 
 class TaskStatus(str, Enum):
@@ -9,5 +9,8 @@ class TaskStatus(str, Enum):
 
 class TaskResultResponse(BaseModel):
     task_id: str
-    status: TaskStatus
+    status: TaskStatus = Field(..., example="done")
     data: Optional[Union[Dict, str]] = None
+
+class ErrorResponse(BaseModel):
+    detail: str = Field(..., example="Nenhuma informação encontrada para o task_id: ")
